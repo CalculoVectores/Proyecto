@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones Vectoriales</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+    <!-- MENU -->
+    <header>
+        <ul>
+            <li><a href="/pages/Principal.html">Principal</a></li>
+            <li><a href="/pages/OperacionesBasicas.html">Operaciones Basicas</a></li>
+            <li><a href="/pages/Productos.html">Productos Vectoriales</a></li>
+            <li><a href="/pages/CosenosDirectores.html">Cosenos Directores</a></li>
+        </ul>
+    </header>
+
+    <!-- BODY -->
+    <h1>SOFTWARE DE OPERACIONES VECTORIALES</h1>
+    <h2>SELECCION DE CALCULADORA</h2>
+
+    <div class="article">
+        <div class="card">
+            <a href="/pages/OperacionesBasicas.html">
+                <img src="data:image/png;base64,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"
+                    alt="Suma vectorial">
+            </a>
+            <h4>Operaciones Basicas</h4>
+            <p>Suma, resta, vector, angulo</p>
+        </div>
+        <div class="card">
+            <a href="/pages/Productos.html">
+                <img src="data:image/png;base64,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"
+                    alt="Producto cruz">
+            </a>
+            <h4>Productos Vectoriales</h4>
+            <li>Producto por un escalar</li>
+            <li>Producto cruz</li>
+            <li>Producto punto</li>
+        </div>
+        <div class="card">
+            <a href="/pages/CosenosDirectores.html">
+                <img src="https://miprofe.com/wp-content/uploads/2016/03/Cosenos_directores.png" alt="Producto cruz">
+            </a>
+            <h4>Cosenos Directores</h4>
+            <p>Angulos del vector con el eje <br> X - Y - Z</p>
+        </div>
+    </div>
+
+
+    <!-- ---------------------- JavaScript -------------------------------- -->
+
+    <script>
+
+
+    </script>
+
+</body>
+
+</html>
