@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecuaciones Parametricas y Simetricas</title>
+</head>
+
+<body>
+
+    <h2>Ecuaciones Parametricas y Simetricas</h2>
+    <form id="form" method="">
+        <div class="vector">
+            <label for="aa">Vector A = </label>
+            < <input class="input" type="number" name="aa" id="aa" placeholder="a" />,
+            <input class="input" type="number" name="ab" id="ab" placeholder="b" />,
+            <input class="input" type="number" name="ac" id="ac" placeholder="c" /> >
+        </div>
+
+        <div class="select">
+            <select name="operacion" id="operacion">
+                <option value="parametricas"> Parametricas </option>
+                <option value="simetricas"> Simetricas </option>
+            </select>
+        </div>
+
+        <div class="vector">
+            <label for="ba">Vector B = </label>
+            < <input class="input" type="number" name="ba" id="ba" placeholder="a" />,
+            <input class="input" type="number" name="bb" id="bb" placeholder="b" />,
+            <input class="input" type="number" name="bc" id="bc" placeholder="c" /> >
+        </div>
+
+        <div class="button">
+            <input onclick="calcular()" class="submit" id="submit" type="button" value="Calcular">
+        </div>
+
+        <div class="resultado">
+            <label for="resultado">
+                <center>Resultado:</center>
+            </label>
+            <div class="center" name="resultado" id="resultado"></div>
+        </div>
+    </form>
+
+    <!-- ---------------------- JavaScript -------------------------------- -->
+    <script>
+        function calcular() {
+            let aa = document.getElementById('aa').value
+            let ab = document.getElementById('ab').value
+            let ac = document.getElementById('ac').value
+            let ba = document.getElementById('ba').value
+            let bb = document.getElementById('bb').value
+            let bc = document.getElementById('bc').value
+            let vectorA = [aa, ab, ac]
+            let vectorB = [ba, bb, bc]
+
+            array = [aa]
+            array = [ba]
+
+            var operacion = document.getElementById('operacion').value
+
+            if (operacion == "parametricas") {
+                cal();
+                resultado.innerHTML = suma(vectorA, vectorB).toString()
+            } else if (operacion == "simetricas") {
+                cal();
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosenos Directores</title>
+
+    <style>
+
+h2{ background: rgb(185, 110, 125); color: black;  position: relative; display: inline-block;
+margin: 10px; border: 8px; left: 10px; padding: 10px;}
+
+body 
+{
+  background: cornsilk ;
+}
+
+aside{
+  background: orange; position: fixed; left: 80%; right: 1%; top: 10%; box-shadow: 5px 3px 5px 2px lightgreen; border-radius: 10%;
+}
+
+h4{
+  text-align: center; text-shadow: 1px 1px gray;
+}
+
+article p{
+  text-align: center; 
+    
+}
+    </style>
+</head>
+<body>
+
+    <h2>Cosenos Directores</h2>
+    <div class="primerseccion" >
+      <form  name="formulario" >
+        <label for="vector">Ingre las coordenadas de su vector: </label>
+        <input type="number" name="eje1" id="vector" placeholder="x" >
+        <input type="number" name="eje2" id="vector" placeholder="y">
+        <input type="number" name="eje3" id="vector"placeholder="z">
+        <input type="button" onclick="ejecutar();" value="calcular">
+        <br/>
+        </form>
+    </div> 
+    <label for="1.0">Su respuesta es: </label>
+      <as id="1.0"></as> <br/><br/><br/>
+
+      <br/><br/><br/><hr/>
+      <h2>"Angulos" de vectores en 2 dimensiones</h2>
+      <div class="select">
+            <select name="operacion" id="operacion">
+                <option name="sd" value="Grados">Angulo en grados &#8737</option>
+                <option name="rd" value="Radianes">Angulo en radianes π</option>
+                <option name="md" value="XyY">Encontrar los ejes apartir de la magnitud y el angulo</option>
+                <input name="d" type="button"  onclick="Show();" value="Ingresar Datos">
+            </select>
+        </div>
+        <div id="contenedor">
+
+        </div> <label for="1.1">Su respuesta es: </label> <ass id="1.1"> </ass>
+
+        <aside>
+          <article>
+            <h4>Cosenos Directores</h4>
+            <p>
+              Se llaman cosenos directores de un vector A, a los cosenos de los ángulos que él con cada uno con los ejes coordenados.
+            </p><br/><hr/>
+            <h4>Conversion de grados a radianes</h4>
+            <p>Conversion de grados a radianes, sólo se tiene que multiplicar el ángulo por π/180</p><br/><hr/>
+            <h4>Conversion de radianes a grados</h4>
+            <p>La Conversion de radianes a grados es muy similiar. Para hacer la conversion solo debemos multiplicar los radianes que tenemos por 180/π</p>
+          </article>
+        </aside>
+
+    <script>
+
+
+        var ejecutar=function(e)
+        {
+            x=formulario.eje1.value;
+            y=formulario.eje2.value;
+            z=formulario.eje3.value;
+            if(x==0 || y==0 || z==0)
+              {
+              alert("no ingresaste todos los datos");
+              
+              } 
+              else {
+               mag=(x*x)+(y*y)+(z*z);
+               mag=Math.sqrt(mag);
+               cosa=x/mag;
+               cosb=y/mag;
+               cosc=z/mag;
+               first=document.getElementById("1.0");
+               first.innerHTML= "cosα:"+cosa+" &#160  &#160 cosβ:"+cosb+" &#160 &#160 cosθ:"+cosc;
+              }
+        }
+
+
+        var Show=function()
+        {
+
+            op=document.getElementById("operacion");
+            if(op.value=="Grados" || op.value=="Radianes") showGrados();
+            else showXyx();
+        }
+
+        var showGrados=function()
+        {
+          formulario=document.createElement("form");
+          contenendor=document.getElementById("contenedor");
+          contenedor.appendChild(formulario);
+          in1=document.createElement("input");
+          in1.type="number"; in1.placeholder="eje x"
+          in2=document.createElement("input");
+          in2.type="number"; in2.placeholder="eje y"
+          formulario.appendChild(in1);
+          formulario.appendChild(in2);
+          calcu=document.createElement("input");
+          calcu.type="button"; 
+          calcu.value="calcular";
+          formulario.appendChild(calcu);
+          calcu.addEventListener("click",Ejecutar2);
+          
+        }
+
+        var Ejecutar2=function(e)
+        {  
+          if(in1.value==0 && in2.value==0) {alert("ingresa todos los datos"); e.preventDefault();}
+          else{
+              x=in1.value; y=in2.value; Ans=Math.atan(y/x);
+
+              second=document.getElementById("1.1");
+
+              if(op.value=="Grados") {Ans=Ans*(180/Math.PI); second.innerHTML=Ans}
+              else  second.innerHTML=Ans;
+          }
+        }
+
+        var showXyx=function()
+        {
+          formu=document.createElement("form");
+          coten=document.getElementById("contenedor");
+          coten.appendChild(formu);
+          in3=document.createElement("input");
+          in3.type="number"; in3.placeholder="magnitud"
+          in4=document.createElement("input");
+          in4.type="number"; in4.placeholder="Angulo";
+          calcu2=document.createElement("input");
+          calcu2.type="button"; 
+          calcu2.value="ejecutar";
+          formu.appendChild(in3);
+          formu.appendChild(in4);
+          formu.appendChild(calcu2);
+          calcu2.addEventListener("click", Ejecutar3);
+        }
+
+        var Ejecutar3=function()
+        {
+          Maag=in3.value; 
+          Aan=in4.value;
+          Aan=Aan*(Math.PI/180); 
+          a=Maag*(Math.cos(Aan));
+          b=Maag*(Math.sin(Aan));
+          third=document.getElementById("1.1");
+          third.innerHTML= "Eje x:"+a+" &#160  &#160 Eje y:"+b;
+        }
+        
+    </script>
+</body>
+</html>

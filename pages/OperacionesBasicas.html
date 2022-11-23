@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/OperacionesBasicas.css" />
+    <title>Operaciones Basicas</title>
+</head>
+
+<body>
+    <h2 class="center">Operaciones Basicas</h2>
+
+    <form id="form" method="">
+        <div class="vector">
+            <label for="aa">Vector A = </label>
+            < <input class="input" type="number" name="aa" id="aa" placeholder="a" />,
+            <input class="input" type="number" name="ab" id="ab" placeholder="b" />,
+            <input class="input" type="number" name="ac" id="ac" placeholder="c" /> >
+        </div>
+
+        <div class="select">
+            <select name="operacion" id="operacion">
+                <option value="suma"> + </option>
+                <option value="resta"> - </option>
+                <option value="angulo"> &#8737 </option>
+                <option value="vector"> Vector AB &#8594 </option>
+                <option value="unitarioA"> Unitario A </option>
+                <option value="unitarioB"> Unitario B </option>
+            </select>
+        </div>
+
+        <div class="vector">
+            <label for="ba">Vector B = </label>
+            < <input class="input" type="number" name="ba" id="ba" placeholder="a" />,
+            <input class="input" type="number" name="bb" id="bb" placeholder="b" />,
+            <input class="input" type="number" name="bc" id="bc" placeholder="c" /> >
+        </div>
+
+        <div class="button">
+            <input onclick="calcular()" class="submit" id="submit" type="button" value="Calcular">
+        </div>
+
+        <div class="resultado">
+            <label for="resultado">
+                <center>Resultado:</center>
+            </label>
+            <div class="center" name="resultado" id="resultado"></div>
+        </div>
+    </form>
+
+    <!-- ---------------------- JcvaScript -------------------------------- -->
+
+    <script>
+
+        function calcular() {
+            let aa = document.getElementById('aa').value
+            let ab = document.getElementById('ab').value
+            let ac = document.getElementById('ac').value
+            let ba = document.getElementById('ba').value
+            let bb = document.getElementById('bb').value
+            let bc = document.getElementById('bc').value
+            let vectorA = [aa, ab, ac]
+            let vectorB = [ba, bb, bc]
+
+            if (aa == "" || ab == "" || ac == "" || ba == "" || bb == "" || bc == "")
+                alert("Por favor, ingrese todos los valores")
+            else {
+                let operacion = document.getElementById('operacion').value
+                let resultado = document.getElementById('resultado')
+
+                switch (operacion) {
+                    case "suma":
+                        resultado.textContent = " < " + suma(vectorA, vectorB) + " > "
+                        break;
+                    case "resta":
+                        resultado.textContent = " < " + resta(vectorA, vectorB) + " > "
+                        break;
+                    case "angulo":
+                        resultado.textContent = angulo(vectorA, vectorB) + "° "
+                        break;
+                    case "vector":
+                        resultado.textContent = " < " + coordenadas(vectorA, vectorB) + " > "
+                        break;
+                    case "unitarioA":
+                        resultado.textContent = " < " + unitario(vectorA) + " > "
+                        break;
+                    case "unitarioB":
+                        resultado.textContent = " < " + unitario(vectorA) + " > "
+                        break;
+                }
+            }
+        };
+
+        function suma(vectorA, vectorB) {
+            let vectorResultante = [0, 0, 0]
+            for (let index = 0; index < vectorResultante.length; index++)
+                vectorResultante[index] = parseFloat(vectorA[index]) + parseFloat(vectorB[index])
+            return vectorResultante;
+        }
+        function resta(vectorA, vectorB) {
+            let vectorResultante = [0, 0, 0]
+            for (let index = 0; index < vectorResultante.length; index++)
+                vectorResultante[index] = parseFloat(vectorA[index]) - parseFloat(vectorB[index])
+            return vectorResultante;
+        }
+        function coordenadas(vectorA, vectorB) {
+            let vectorResultante = [0, 0, 0]
+            for (let index = 0; index < vectorResultante.length; index++)
+                vectorResultante[index] = parseFloat(vectorB[index]) - parseFloat(vectorA[index])
+            return vectorResultante;
+        }
+        function unitario(vector) {
+            let vectorResultante = [0, 0, 0]
+            let mag = parseFloat(magnitud(vector))
+            for (let index = 0; index < vectorResultante.length; index++)
+                vectorResultante[index] = (parseFloat(vector[index]) / parseFloat(mag)).toFixed(4);
+            return vectorResultante;
+        }
+        function angulo(vectorA, vectorB) {
+            let numerador = productoPunto(vectorA, vectorB)
+            let denominador = magnitud(vectorA) * magnitud(vectorB)
+            let angulo = Math.acos(parseFloat(numerador / denominador))
+            return radToDeg(angulo).toFixed(4)
+        }
+        function magnitud(vector) {
+            let magnitud = 0
+            for (let index = 0; index < vector.length; index++)
+                magnitud += Math.pow(parseFloat(vector[index]), 2)
+            return Math.sqrt(magnitud)
+        }
+        function productoPunto(vectorA, vectorB) {
+            let productoPunto = 0
+            for (let index = 0; index < vectorB.length; index++)
+                productoPunto += parseFloat(vectorA[index]) * parseFloat(vectorB[index])
+            return productoPunto;
+        }
+        function radToDeg(rad) {
+            let pi = Math.PI;
+            return rad * (180 / pi);
+        }
+
+    </script>
+</body>
+
+</html>
